@@ -165,33 +165,6 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
         return Mage::getModel('aitholiday/item')->load($id)->setPage($this);
     }
     
-    protected function _prepareScopes( $location )
-    {
-        if (!($mainScope = $this->getMainScope()))
-        {
-            $mainScope = $this->_createMainScope();
-        }
-        /* @todo continue this functional */
-    }
-    
-    /**
-     * 
-     * @return Aitoc_Aitholiday_Model_Scope
-     */
-    protected function _makeScope()
-    {
-        return Mage::getModel('aitholiday/scope')->setCurrentPage($this)->setEnabled();
-    }
-    
-    /**
-     * 
-     * @return Aitoc_Aitholiday_Model_Scope
-     */
-    protected function _createMainScope()
-    {
-        return $this->_makeScope()->setIsBase();
-    }
-    
     protected function _makeUrlFromLocationData( $location )
     {
         $url = $location['module'].'/'.$location['controller'].'/'.$location['action'];
@@ -217,20 +190,6 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
     
     /**
      * 
-     * @return Aitoc_Aitholiday_Model_Mysql4_Scope_Collection
-     */
-    protected function getScopes()
-    {
-        if (!$this->hasScopes())
-        {
-            $collection = Mage::getResourceModel('aitholiday/scope_collection')->setPageFilter($this);
-            $this->setScopes($collection);
-        }
-        return $this->getData('scopes');
-    }
-    
-    /**
-     * 
      * @return Aitoc_Aitholiday_Model_Mysql4_Item_Collection
      */
     public function getItems()
@@ -241,38 +200,6 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
             $this->setItems($collection);
         }
         return $this->getData('items');
-    }
-    
-    /**
-     * 
-     * @return Aitoc_Aitholiday_Model_Scope_Group
-     */
-    public function getBaseScope()
-    {
-        if (!$this->hasBaseScope())
-        {
-            $baseScope = new Aitoc_Aitholiday_Model_Scope_Group();
-            foreach ($this->_getScopes() as $scope)
-            {
-                /* @var $scope Aitoc_Aitholiday_Model_Scope */
-                $scope->setCurrentPage($this);
-                if ($scope->isBase())
-                {
-                    $baseScope->addScope($scope);
-                }
-            }
-            $this->setBaseScope($baseScope);
-        }
-        return $this->getData('base_scope');
-    }
-    
-    /**
-     * 
-     * @return Aitoc_Aitholiday_Model_Scope
-     */
-    public function getMainScope()
-    {
-        return $this->getBaseScope()->getMain();
     }
     
     /**

@@ -36,17 +36,6 @@ class Aitoc_Aitholiday_Model_Mysql4_Item_Collection extends Mage_Core_Model_Mysq
         return parent::_afterLoad();
     }
     
-    
-    /**
-     * 
-     * @param Aitoc_Aitholiday_Model_Scope $scope
-     * @return Aitoc_Aitholiday_Model_Mysql4_Item_Collection
-     */
-    public function setScopeFilter( Aitoc_Aitholiday_Model_Scope $scope )
-    {
-        return $this;
-    }
-    
     /**
      * 
      * @param Aitoc_Aitholiday_Model_Page $page

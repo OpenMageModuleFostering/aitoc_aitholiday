@@ -64,7 +64,7 @@ class Aitoc_Aitholiday_Block_Injection extends Mage_Core_Block_Template
             unset($params['___from_store']);
         }
         $data = array(
-            'title' => addcslashes($this->getLayout()->getBlock('head')->getTitle(),"'") ,
+            'title' => str_replace(array("'",'"'),'`',$this->getLayout()->getBlock('head')->getTitle()) ,
             'module' => $request->getModuleName() ,
             'controller' => $request->getControllerName() ,
             'action' => $request->getActionName() ,
