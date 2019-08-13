@@ -2,20 +2,7 @@
  * @copyright  Copyright (c) 2009 AITOC, Inc. 
  */
  
-@CHARSET "UTF-8";
 
-#aitholiday_palette1.aitoc-holiday-palette
-{	position:absolute;
-    z-index: 99999;
-    top: 0px;
-    left: 0px;
-    background-color: #0066CC;
-    width: 230px;
-    height: 420px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border:2px solid #0066CC;
-}
 
 .aitoc-holiday-palette
 {	position:absolute;
@@ -29,9 +16,6 @@
 	-webkit-border-radius: 5px;
 	border:2px solid #0066CC;
 }
-
-body:last-child:not(:root:root) #aitholiday_palette1.aitoc-holiday-palette{
-	position:relative;}
 
 .aitholiday-wrapper
 {
