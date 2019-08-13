@@ -1,0 +1,139 @@
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+ 
+@CHARSET "UTF-8";
+
+#aitholiday_palette1.aitoc-holiday-palette
+{	position:fixed;
+    z-index: 99999;
+    top: 0px;
+    left: 0px;
+    background-color: #0066CC;
+    width: 230px;
+    height: 420px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border:2px solid #0066CC;
+}
+
+.aitoc-holiday-palette
+{	position:fixed;
+    z-index: 99999;
+    top: 0px;
+    left: 0px;
+    background-color: #0066CC;
+    width: 230px;
+    height: 420px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border:2px solid #0066CC;
+}
+
+
+.aitholiday-wrapper
+{
+    position: relative;
+    width: 0px;
+    height: 0px;
+}
+
+.aitholiday-wrapper .aitholiday-panel
+{
+    position: absolute;
+    width: 130px;
+}
+
+.aitholiday-wrapper .aitholiday-panel .aitholiday-resizer
+{
+    width: 100px;
+}
+
+.aitholiday-buttons{
+	width:180px;
+	overflow:hidden;
+	margin:auto;
+	margin-top:15px;}
+
+.aitoc-holiday-palette .aitholiday-buttons .button{
+	width:70px;
+	margin:auto;
+	background-color:#0099FF;
+	border:2px solid #FFFFFF;
+	color:#FFFFFF;
+	font-weight:bold;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	cursor:pointer;}
+	
+.aitoc-holiday-palette .aitholiday-buttons .button:hover{	
+	color:#B4EAF8;
+	border:2px solid #B4EAF8;}
+	
+.apply{
+	width:70px;
+	float:left;
+	}
+	
+.cancel{	
+	float:right;}
+
+.aitoc-holiday-palette .aitholiday-buttons .button
+{
+    cursor: pointer;
+}
+
+.aitoc-holiday-palette .dragger
+{
+    background-color: #0066CC;
+    color: #ffffff;
+    cursor: move;
+	font-weight:bold;
+
+}
+
+.aitoc-holiday-palette .items
+{
+    overflow-y:scroll;
+    height: 320px;
+}
+
+.aitoc-holiday-palette .items .item
+{
+    z-index: 100000; 
+}
+
+.aitoc-holiday-palette .items .item img
+{
+    width: 95px;
+	height:100px;
+}
+
+.aitoc-holiday-palette .items{
+ 	background-image:url(../../images/aitoc/aitholiday/bg.gif);
+	background-position:left top;
+	background-repeat:repeat;}
+	
+.items ul{	
+	padding:0;
+	margin:0;
+}
+	
+.items ul li{
+	width:100px;
+	height:100px;
+	padding:2px;
+	display:block;
+	float:left;
+	}
+	
+.loading{
+	color:#FFFFFF;
+	font-weight:bold;
+	padding-right:10px;
+	background-image:url(../../images/aitoc/aitholiday/progress_load.gif);
+	background-position:top right;
+	background-repeat:no-repeat;
+	width:80px;
+	margin:auto;
+	margin-top:15px;}

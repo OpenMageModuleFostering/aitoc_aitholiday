@@ -1,0 +1,80 @@
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+ 
+@CHARSET "UTF-8";
+
+.aitholiday-item .aitholiday-delete
+{
+    width: 16px;
+    height: 16px;
+	color:#FF0000;
+	font-weight:bold;
+	cursor:pointer;
+	line-height:13px;
+	position:absolute;
+	right:5px;
+	top:5px;
+	background-image:url(../../images/aitoc/aitholiday/delete.png);
+	background-position:center center;
+	background-repeat:no-repeat;
+}
+
+.aitholiday-wrapper .aitholiday-panel{
+	overflow:hidden;
+	background-color:#0066FF;
+	padding:20px 20px 15px 15px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	position:relative;}
+
+.aitholiday-item .aitholiday-wrapper .resizer
+{
+    position: absolute;
+    z-index: 10001;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    cursor: e-resize;
+}
+
+.ui-slider-horizontal .ui-slider-handle{
+	cursor:pointer;}
+	
+.aitholiday-admin img{
+	cursor:move;}
+	
+.ui-widget-content {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#EEEEEE url(../images/ui-bg_highlight-soft_100_eeeeee_1x100.png) repeat-x scroll 50% top;
+border:2px solid #999999;
+color:#333333;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+-moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+background:#F6F6F6 url(../images/ui-bg_glass_100_f6f6f6_1x400.png) repeat-x scroll 50% 50%;
+border:2px solid #999999;
+color:#1C94C4;
+font-weight:bold;
+outline-color:-moz-use-text-color;
+outline-style:none;
+outline-width:medium;
+}
+
+.aitholiday-publicator
+{
+	padding:5px;
+	font-weight:bold;
+	color:#FFFFFF;}
+	
+.aitholiday-item{	
+	text-align:left;
+}
+
+.aitholiday-item img{
+	filter:expression(fixPNG(this)); }

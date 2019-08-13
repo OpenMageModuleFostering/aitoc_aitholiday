@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @copyright Copyright (c) 2009 AITOC, Inc. -->
+<config>
+    <modules>
+        <Aitoc_Aitholiday>
+            <active>true</active>
+            <codePool>local</codePool>
+            <self_name>Xmas Set</self_name>
+            <priority>1000</priority>
+            <depends></depends>
+        </Aitoc_Aitholiday>
+    </modules>
+</config>

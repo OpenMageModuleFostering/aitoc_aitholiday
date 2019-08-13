@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @copyright Copyright (c) 2009 AITOC, Inc.  -->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>aitoc/aitholiday/main.js</script></action>
+            <action method="addJs"><script>aitoc/aitholiday/decoration.js</script></action>
+            <action method="addJs"><script>aitoc/aitholiday/request.js</script></action>
+            <action method="addJs"><script>aitoc/aitholiday/palette.js</script></action>
+            <action method="addJs"><script>aitoc/jquery-1.3.2.min.js</script></action>
+            <action method="addJs"><script>aitoc/aitholiday/jquery-ui-1.7.2.min.js</script></action>
+            <action method="addCss"><script>css/aitoc/aitholiday/jquery-ui-1.7.2.css</script></action>
+            <action method="addCss"><script>css/aitoc/palette.css</script></action>
+            <action method="addCss"><script>css/aitoc/aitholiday.css</script></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="aitholiday/injection" name="aitholiday_injection" template="aitholiday/injection.phtml" />
+        </reference>
+    </default>
+</layout>

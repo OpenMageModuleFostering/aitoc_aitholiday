@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Aitoc_Aitholiday",
+    "type": "magento-module",
+    "license": "OSL",
+    "homepage": "",
+    "description": "Xmas Set",
+    "authors": [
+    {
+        "name": "AITOC Inc.",
+        "email": "magsupport@aitoc.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

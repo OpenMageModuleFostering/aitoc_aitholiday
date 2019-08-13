@@ -1,0 +1,9 @@
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+ 
+td#aitoc_news { padding-left: 10px; width: 330px; }
+td#aitoc_news .fieldset { background-color: #ddd; }
+td#aitoc_news .news .item h2 { font-size: 120%; margin-top: 0.5em; }
+td#aitoc_news .news .item h3 { font-size: 110%; margin-top: 0.5em; color: #EA7601; }
+td#aitoc_news .news .item ul { list-style-type: square; list-style-position: inside; }

@@ -1,0 +1,48 @@
+<?php
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+
+/* @var $this Aitoc_Aitholiday_Block_Admin_Manage */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><h3><?php echo Mage::helper('aitholiday')->__('Xmas Set')?></h3></td>
+            <td class="form-buttons"><?php echo $this->getSaveButtonHtml() ?></td>
+         </tr>
+    </table>
+</div>
+<div class="entry-edit">
+  <table><tr><td>
+  <div class="form">
+    <form action="<?php echo $this->getSaveUrl() ?>" method="post" id="aitholiday_form" enctype="multipart/form-data">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <?php echo $this->makeForm()->toHtml()?>
+    </form>
+  </div>
+  </td></tr>
+  <tr><td class="aitoc_news">
+  <div class="entry-edit-head"><h4><?php echo $this->__("Aitoc news")?></h4></div>
+      <div class="fieldset">
+          <div class="news">
+              <?php
+              foreach ($this->getNews() as $item) 
+              {
+                  /* @var $item Varien_Object */
+                  ?>
+                  <div class="item">
+                    <h2><?php echo $item->hasTitle() ? $item->getTitle() : ''?></h2>
+                    <?php echo $item->getContent()?>
+                  </div>
+                  <?php
+              }
+              ?>
+          </div>
+      </div>
+  </div>
+  </td></tr></table>
+</div>
+<script type="text/javascript">
+    var configForm = new varienForm('aitholiday_form');
+</script>

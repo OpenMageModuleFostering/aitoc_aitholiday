@@ -1,0 +1,39 @@
+<?php
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+
+/* @var $this Aitoc_Aitholiday_Block_Admin_Palette */
+$images = $this->getImages();
+$imageCount = sizeof($images);
+?>
+<div class="aitoc-holiday-palette" id="<?php echo $this->getPaletteId()?>">
+    <div class="dragger" id="<?php echo $this->getPaletteId()?>_dragger">
+        <?php echo $this->__('Decoration palette')?>
+    </div>
+    <div class="items">
+        <ul>
+        <?php
+        for($j = 0 ; $j < $imageCount ; ++$j)
+        {
+            $image = $images[$j];
+            /* @var $image Aitoc_Aitholiday_Model_Image */
+            ?>
+            <li>
+              <div class="item" id="<?php echo $image->getHtmlId()?>" imagefile="<?php echo $image->getFile()?>">
+                <img src="<?php echo $image->getUrl()?>"/>
+              </div>
+            </li>
+            <?php
+        }
+        ?>
+        </ul>
+    </div>
+    <div class="aitholiday-buttons">
+        <div id="<?php echo $this->getPaletteId()?>_apply" class="button apply"><?php echo $this->__('Apply')?></div>
+        <div id="<?php echo $this->getPaletteId()?>_cancel" class="button cancel"><?php echo $this->__('Cancel')?></div>
+    </div>
+    <div class="loading">
+        <div id="<?php echo $this->getPaletteId()?>_loading" class="loading-element" style="display: none;"><?php echo $this->__("Loading...")?></div>
+    </div>
+</div>

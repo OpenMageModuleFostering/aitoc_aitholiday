@@ -1,0 +1,39 @@
+<?php
+/**
+ * @copyright  Copyright (c) 2009 AITOC, Inc. 
+ */
+
+/* @var $this Aitoc_Aitholiday_Block_Injection */
+?>
+<script type="text/javascript">
+
+Aitoc_Aitholiday.requestAdminUrlTemplate = '<?php echo $this->_adminHelper()->getAjaxUrlTemplate()?>';
+    
+Aitoc_Aitholiday.defaultAdminModule = '<?php echo $this->_adminHelper()->getDefaultModule()?>';
+    
+Aitoc_Aitholiday.defaultAdminController = '<?php echo $this->_adminHelper()->getDefaultController()?>';
+    
+Aitoc_Aitholiday.defaultAdminMethod = '<?php echo $this->_adminHelper()->getDefaultMethod()?>';
+    
+Aitoc_Aitholiday.requestUrlTemplate = '<?php echo $this->_helper()->getAjaxUrlTemplate()?>';
+    
+Aitoc_Aitholiday.defaultModule = '<?php echo $this->_helper()->getDefaultModule()?>';
+    
+Aitoc_Aitholiday.defaultController = '<?php echo $this->_helper()->getDefaultController()?>';
+    
+Aitoc_Aitholiday.defaultMethod = '<?php echo $this->_helper()->getDefaultMethod()?>';
+
+Aitoc_Aitholiday.storeViewId = '<?php echo $this->getStoreId()?>';
+
+Aitoc_Aitholiday.baseUrl = '<?php echo $this->_helper()->getBaseUrl()?>';
+
+Aitoc_Aitholiday.config = '<?php echo $this->getConfigJSON()?>'.evalJSON();
+
+Aitoc_Aitholiday.location = '<?php echo $this->getLocationJSON()?>'.evalJSON();
+
+Aitoc_Aitholiday.language = '<?php echo $this->getTranlsationJSON()?>'.evalJSON();
+
+Event.observe(window,'load',function(){
+    Aitoc_Aitholiday.init();  
+});
+</script>
