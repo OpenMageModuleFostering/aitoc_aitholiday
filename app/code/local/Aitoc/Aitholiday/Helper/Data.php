@@ -28,7 +28,7 @@ class Aitoc_Aitholiday_Helper_Data extends Mage_Core_Helper_Abstract
     
     public function getBaseUrl()
     {
-        $store = Mage::app()->getStore(0);
+        $store = Mage::app()->getStore();
         $url = str_replace(basename($_SERVER['SCRIPT_FILENAME']).'/','',$store->getBaseUrl());
         return str_replace($store->getCode().'/','',$url);
     }

@@ -9,7 +9,8 @@ $imageCount = sizeof($images);
 ?>
 <div class="aitoc-holiday-palette" id="<?php echo $this->getPaletteId()?>">
     <div class="dragger" id="<?php echo $this->getPaletteId()?>_dragger">
-        <?php echo $this->__('Decoration palette')?>
+        <div class="title"><?php echo $this->__('Decoration palette')?></div>
+        <div id="<?php echo $this->getPaletteId()?>_close" class="nav-button-close">&nbsp;</div>
     </div>
     <div class="items">
         <ul>

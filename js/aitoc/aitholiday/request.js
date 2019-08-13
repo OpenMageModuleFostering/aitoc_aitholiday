@@ -31,6 +31,11 @@ Aitoc_Aitholiday.Request = Class.create(
         }
     } ,
     
+    hasHttpsProtocol: function( url )
+    {
+        return Aitoc_Aitholiday.hasHttpsProtocol(url);
+    } ,
+    
     _prepareUrl: function( request )
     {
         if ('string' == typeof request)
@@ -68,7 +73,15 @@ Aitoc_Aitholiday.Request = Class.create(
             options.method = 'post';
         }
         options.onSuccess = callback || this.realizeResponse.bind(this);
-        new Ajax.Request(this._prepareUrl(request),options);
+        var url = this._prepareUrl(request);
+        if (this.hasHttpsProtocol(url) == this.hasHttpsProtocol(document.URL))
+        {
+            new Ajax.Request(url,options);
+        }
+        else if (options.onProtocolFailure)
+        {
+            options.onProtocolFailure();
+        }
     } ,
     
     realizeResponse: function ( response )
@@ -87,22 +100,32 @@ Aitoc_Aitholiday.Admin.Request = Class.create(Aitoc_Aitholiday.Request,
     
     realizeResponse: function ( $super , response )
     {
-        if (response.responseJSON && 1 == response.responseJSON.status && Aitoc_Aitholiday.config.palette)
+        if (1 == response.responseJSON.status)
         {
-            var manager = new Aitoc_Aitholiday.Palette.Manager();
-            manager.createControl(response.responseJSON.paletteId);
-        }
-        else
-        {
-            var manager = new Aitoc_Aitholiday.Decoration.Manager();
-            if (1 == response.responseJSON.status || Aitoc_Aitholiday.config.decoration)
+            if (response.responseJSON && Aitoc_Aitholiday.config.palette)
             {
-                manager.showDecoration();
+                var manager = new Aitoc_Aitholiday.Palette.Manager();
+                manager.createControl(response.responseJSON.paletteId);
             }
-            var request = new Aitoc_Aitholiday.User.Request(manager);
-            request.send();
+            else
+            {
+                Aitoc_Aitholiday.initPublic();
+            }
         }
         $super(response);
+    } ,
+    
+    send: function ( $super , request , callback , options )
+    {
+        options = options || {};
+        options.onProtocolFailure = function()
+        {
+            var manager = new Aitoc_Aitholiday.Decoration.Manager();
+            manager.showDecoration();
+            var request = new Aitoc_Aitholiday.User.Request(manager);
+            request.send();
+        };
+        $super(request,callback,options);
     }
     
 });

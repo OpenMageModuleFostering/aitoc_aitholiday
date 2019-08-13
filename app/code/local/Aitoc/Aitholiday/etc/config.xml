@@ -3,7 +3,7 @@
 <config>
     <modules>
         <Aitoc_Aitholiday>
-            <version>0.2.3</version>
+            <version>0.3.0</version>
         </Aitoc_Aitholiday>
     </modules>
     <global>
@@ -19,6 +19,7 @@
                     <scope><table>aitholiday_scope</table></scope>
                     <item><table>aitholiday_item</table></item>
                     <scope_page><table>aitholiday_scope_page</table></scope_page>
+                    <bridge><table>aitholiday_bridge</table></bridge>
                 </entities>
             </aitholiday_mysql4>
         </models>

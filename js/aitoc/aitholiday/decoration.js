@@ -532,7 +532,7 @@ Aitoc_Aitholiday.Decoration.AdminControl = Class.create(Aitoc_Aitholiday.Decorat
     
     getCurrentWidth: function()
     {
-        return jQuery(this._resizer).slider('value');
+        return jQueryAitoc(this._resizer).slider('value');
     } ,
     
     getScale: function()
@@ -543,7 +543,7 @@ Aitoc_Aitholiday.Decoration.AdminControl = Class.create(Aitoc_Aitholiday.Decorat
     setScale: function( $super , scale )
     {
         var value = (this.getWidth()/100*scale).round();
-        jQuery(this._resizer).slider('value',value);
+        jQueryAitoc(this._resizer).slider('value',value);
         this._img.setStyle("width: "+value+"px;");
         this.updatePanelPosition();
     } ,
@@ -556,7 +556,7 @@ Aitoc_Aitholiday.Decoration.AdminControl = Class.create(Aitoc_Aitholiday.Decorat
     _createResizer: function()
     {
         this._baseWidth = this.getWidth();
-        jQuery(this._resizer).slider({
+        jQueryAitoc(this._resizer).slider({
             min: 0 ,
             max: this.getWidth() ,
             value: this.getWidth() ,
@@ -577,7 +577,7 @@ Aitoc_Aitholiday.Decoration.AdminControl = Class.create(Aitoc_Aitholiday.Decorat
     
     _addDraggable: function()
     {
-        jQuery(this._element).draggable({
+        jQueryAitoc(this._element).draggable({
             handle: this._img ,
             stop: function(){this.positionToOffset();}.bind(this)
         });
@@ -695,7 +695,7 @@ Aitoc_Aitholiday.Decoration.PaletteControl = Class.create(Aitoc_Aitholiday.Decor
     updateView: function( $super )
     {
         $super();
-        jQuery(this._element).draggable({
+        jQueryAitoc(this._element).draggable({
             handle: this._element,
             helper: 'clone' ,
             scroll: true ,
@@ -744,7 +744,7 @@ Aitoc_Aitholiday.Decoration.PaletteControl = Class.create(Aitoc_Aitholiday.Decor
     clearView: function ( $super )
     {
         $super();
-        jQuery(this._element).draggable('destroy');
+        jQueryAitoc(this._element).draggable('destroy');
     }
 
 });

@@ -65,13 +65,6 @@ class Aitoc_Aitholiday_Block_Admin_Manage extends Mage_Adminhtml_Block_Widget
         $fieldset = $form->addFieldset('main',array(
             'legend' => $this->__('Module managemet')
         ));
-        $fieldset->addField('enable_palette','checkbox',array(
-            'name' => 'enable_palette' ,
-            'value' => 1 ,
-            'label' => $this->__('Enable palette:') ,
-            'note' => $this->__('Enable decoration toolbar in front end for administrator') ,
-            'checked' => Mage::getStoreConfigFlag('aitholiday/manage/enable_palette')
-        ));
         $fieldset->addField('enable_set','checkbox',array(
             'name' => 'enable_set' ,
             'value' => 1 ,
@@ -79,10 +72,28 @@ class Aitoc_Aitholiday_Block_Admin_Manage extends Mage_Adminhtml_Block_Widget
             'note' => $this->__('Make decorations visible to customers') ,
         	'checked' => Mage::getStoreConfigFlag('aitholiday/manage/enable_set')
         ));
-        $fieldset->addField('link','note',array(
-            'text' => '<a target="_blank" href="'.Mage::helper('aitholiday')->getBaseUrl().'">'.$this->__('Go to edit decorations in frontend').'</a>'
-        ));
+        $stores = Mage::app()->getStores();
+        $bridgeCode = $this->_adminHelper()->bridge()->getCode();
+        foreach ($stores as $store)
+        {
+            /* @var $store Mage_Core_Model_Store */
+            $url = $store->getUrl('',array('_store_to_url' => true));
+            $url .= false === strstr($url,"?") ? "?" : "&";
+            $fieldset->addField('link'.$store->getId(),'note',array(
+                'text' => '<a href="'.$url.'bridge='.$bridgeCode.'">'.$this->__('Go to edit decorations in frontend for: '.$store->getName()).'</a>'
+            ));
+        }
+        
         return $form;
+    }
+    
+    /**
+     * 
+     * @return Aitoc_Aitholiday_Helper_Admin
+     */
+    protected function _adminHelper()
+    {
+        return Mage::helper('aitholiday/admin');
     }
     
     /**

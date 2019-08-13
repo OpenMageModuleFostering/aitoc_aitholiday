@@ -76,5 +76,5 @@ outline-width:medium;
 	text-align:left;
 }
 
-.aitholiday-item img{
-	filter:expression(fixPNG(this)); }
+/*.aitholiday-item img{
+	filter:expression(fixPNG(this)); }*/

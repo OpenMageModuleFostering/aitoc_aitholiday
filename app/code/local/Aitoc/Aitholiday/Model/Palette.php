@@ -82,13 +82,19 @@ class Aitoc_Aitholiday_Model_Palette extends Mage_Core_Model_Abstract
     {
         return Mage::helper('aitholiday')->getBaseUrl();
     }
+	
+    protected function _trimUrl( $url )
+	{
+		return str_replace(array('http://','https://'),'',$url);
+	}
     
     public function getImagesPath()
     {
         if (!$this->hasData('images_path'))
         {
-            $url = $this->getImagesUrl();
-            $path = str_replace($this->getStoreBaseUrl(),Mage::getBaseDir().'/',$url);
+            $url = $this->_trimUrl($this->getImagesUrl());
+		    $baseUrl = $this->_trimUrl($this->getStoreBaseUrl());
+            $path = str_replace($baseUrl,Mage::getBaseDir().'/',$url);
             $this->setData('images_path',$path);
         }
         return $this->getData('images_path');
@@ -98,8 +104,9 @@ class Aitoc_Aitholiday_Model_Palette extends Mage_Core_Model_Abstract
     {
         if (!$this->hasBaseImagesUrl())
         {
-            $url = $this->getImagesUrl();
-            $url = str_replace($this->getStoreBaseUrl(),'',$url);
+            $url = $this->_trimUrl($this->getImagesUrl());
+			$baseUrl = $this->_trimUrl($this->getStoreBaseUrl());
+            $url = str_replace($baseUrl,'',$url);
             $this->setBaseImagesUrl($url);
         }
         return $this->getData('base_images_url');

@@ -3,35 +3,8 @@
  * @copyright  Copyright (c) 2009 AITOC, Inc. 
  */
 
-class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Action
+class Aitoc_Aitholiday_PaletteController extends Mage_Core_Controller_Front_Action
 {
-    
-	/**
-     * Controller predispatch method
-     *
-     * @return Mage_Adminhtml_Controller_Action
-     */
-    public function preDispatch()
-    {
-        $this->getRequest()->setQuery('ajax',true);
-        Mage::getDesign()->setArea('adminhtml')
-            ->setPackageName((string)Mage::getConfig()->getNode('stores/admin/design/package/name'))
-            ->setTheme((string)Mage::getConfig()->getNode('stores/admin/design/theme/default'));
-
-        $this->getLayout()->setArea('adminhtml');
-
-        Mage::dispatchEvent('adminhtml_controller_action_predispatch_start', array());
-        Mage_Core_Controller_Varien_Action::preDispatch();
-        if (!$this->_isAllowed()) 
-        {
-            $this->_responseJson(array(
-                'status' => 0
-            ));
-            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-            $this->setFlag('', self::FLAG_NO_POST_DISPATCH, true);
-            $this->getRequest()->setDispatched(true);
-        }
-    }
     
     protected function _responseJson( $data )
     {
@@ -41,6 +14,11 @@ class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Actio
     
     public function beforeLoadAction()
     {
+        $this->_adminHelper()->initBridge();
+        if (!$this->_isAllowed())
+        {
+            return $this->_responseJson(array('status' => 0));
+        }
         $storeId = $this->getRequest()->getParam('store_id');
         $id = Aitoc_Aitholiday_Model_Session::DEFAULT_PALETTE.$storeId;
         $session = $this->_adminHelper()->session();
@@ -63,6 +41,11 @@ class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Actio
     
     public function applyAction()
     {
+        $this->_adminHelper()->initBridge();
+        if (!$this->_isAllowed())
+        {
+            return;
+        }
         $data = Zend_Json::decode($this->getRequest()->getParam('data'));
         $page = $this->_makePageByLocation($data['palette'],$data['location']);
         $page->addItemsByInfo($data['data']);
@@ -73,6 +56,17 @@ class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Actio
             $page->addItemsByInfo($data['data']);
             $page->save();
         }
+    }
+    
+    public function closeAction()
+    {
+        $this->_adminHelper()->initBridge();
+        if (!$this->_isAllowed())
+        {
+            return;
+        }
+        $this->_adminHelper()->bridge()->delete();
+        $this->_adminHelper()->session()->unsAitholidayBridgeCode();
     }
     
     /**
@@ -90,6 +84,11 @@ class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Actio
     
     public function loadAction()
     {
+        $this->_adminHelper()->initBridge();
+        if (!$this->_isAllowed())
+        {
+            return;
+        }
         $id = $this->getRequest()->getParam('id');
         $this->getResponse()->setBody(
             $this->getLayout()->createBlock('aitholiday/admin_palette')
@@ -108,7 +107,7 @@ class Aitoc_Aitholiday_PaletteController extends Mage_Adminhtml_Controller_Actio
 
     protected function _isAllowed()
     {
-	    return Mage::getSingleton('admin/session')->isAllowed('aitholiday');
+	    return $this->_adminHelper()->bridge() && !!$this->_adminHelper()->bridge()->getId();
     }
     
 }

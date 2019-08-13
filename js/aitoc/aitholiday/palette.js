@@ -113,6 +113,11 @@ Aitoc_Aitholiday.Palette.Control = Class.create(Aitoc_Aitholiday.Palette.Abstrac
         return $(this._id+'_cancel');
     } ,
     
+    _getClose: function()
+    {
+        return $(this._id+'_close');
+    } ,
+    
     _getLoading: function()
     {
         return $(this._id+'_loading');
@@ -172,7 +177,7 @@ Aitoc_Aitholiday.Palette.Control = Class.create(Aitoc_Aitholiday.Palette.Abstrac
     
     clearView: function()
     {
-        jQuery(this._getView()).draggable('destroy');
+        jQueryAitoc(this._getView()).draggable('destroy');
         
         this.getItems().each(function (item) {
             item.clearView();
@@ -189,7 +194,7 @@ Aitoc_Aitholiday.Palette.Control = Class.create(Aitoc_Aitholiday.Palette.Abstrac
     
     updateView: function()
     {
-        jQuery(this._getView()).draggable({
+        jQueryAitoc(this._getView()).draggable({
             handle: this._getDragger()
         });
         
@@ -200,7 +205,16 @@ Aitoc_Aitholiday.Palette.Control = Class.create(Aitoc_Aitholiday.Palette.Abstrac
         
         this._getApply().observe('click',this.onClickApply.bind(this));
         this._getCancel().observe('click',this.onClickCancel.bind(this));
+        this._getClose().observe('click',this.onClickClose.bind(this));
         this._moveToStartPosition();
+    } ,
+    
+    onClickClose: function()
+    {
+        this._request.send(['-','-','close'],function()
+        {
+            document.location.href = document.URL;
+        }.bind(this));
     } ,
     
     stopLoading: function()

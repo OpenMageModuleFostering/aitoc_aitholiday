@@ -3,7 +3,7 @@
  * @copyright  Copyright (c) 2009 AITOC, Inc. 
  */
 
-class Aitoc_Aitholiday_Block_Admin_Palette extends Mage_Adminhtml_Block_Widget
+class Aitoc_Aitholiday_Block_Admin_Palette extends Mage_Core_Block_Template
 {
 
 	/**

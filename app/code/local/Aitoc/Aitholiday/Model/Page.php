@@ -90,48 +90,48 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
         $items = $this->getItems();
         foreach ($info as $key => $data)
         {
-            echo "\n";
-            print_r($data);
+            #echo "\n";
+            #print_r($data);
             if ($this->isUrlParamsUsed())
             {
-                echo 1;
+                #echo 1;
                 if (!$this->hasUrlParams() || (isset($data['is_public']) && $data['is_public']))
                 {
-                    echo 2;
+                    #echo 2;
                     $data['use_params'] = true;
                 }
                 if (!isset($data['use_params']) || !$data['use_params'])
                 {
                     if ($data['id'])
                     {
-                        echo 4;
+                        #echo 4;
                         $info[$key]['id'] = null;
                         $data['is_deleted'] = true;
                     }
                     else
                     {
-                        echo 5;
+                        #echo 5;
                         continue;
                     }
                 }
             }
             elseif (isset($data['use_params']) && $data['use_params'])
             {
-                echo 6;
+                #echo 6;
                 if (isset($data['is_public']) && $data['is_public'])
                 {
-                    echo 7;
+                    #echo 7;
                     continue;
                 }
                 if ($data['id'])
                 {
-                    echo 8;
+                    #echo 8;
                     $info[$key]['id'] = null;
                     $data['is_deleted'] = true;
                 }
                 else
                 {
-                    echo 9;
+                    #echo 9;
                     continue;
                 }
             }
@@ -139,18 +139,18 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
             {
                 if ($item->isDeleted())
                 {
-                    echo " delete ";
+                    #echo " delete ";
                     $item->delete();
                     $items->removeItemByKey($item->getId());
                 }
                 else
                 {
-                    echo " save ";
+                    #echo " save ";
                     $items->addItem($item->save());
                     unset($info[$key]);
                 }
                 $this->_isPublicItems[$item->getId()] = $item->isPublic(); 
-                echo $item->isPublic() ? "p" : "l";
+                #echo $item->isPublic() ? "p" : "l";
             }
         }
     }
@@ -200,9 +200,12 @@ class Aitoc_Aitholiday_Model_Page extends Aitoc_Aitholiday_Model_Abstract
             $params = array();
             foreach ($location['params'] as $key => $value)
             {
-                $params[] = $key.'='.$value;
+                if (!in_array($key,array('bridge','___store','___from_store')))
+                {
+                    $params[] = $key.'='.$value;
+                }
             }
-            $url .= '?'.join('&',$params);
+            $url .= $params ? '?'.join('&',$params) : '';
         }
         return $url;
     }

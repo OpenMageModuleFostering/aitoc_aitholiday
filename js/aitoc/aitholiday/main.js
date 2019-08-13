@@ -83,12 +83,38 @@ Aitoc_Aitholiday =
         
     } ,
     
+    hasHttpsProtocol: function( url )
+    {
+        return 'https://' == url.match(/^https:\/\//);
+    } ,
+    
     init: function() 
     {
-        var request = new Aitoc_Aitholiday.Admin.Request();
-        request.send([],null,{
-            parameters: {store_id: this.storeViewId}
-        });
+        if (this.hasHttpsProtocol(document.URL))
+        {
+            this.baseUrl = this.baseUrl.replace('http://','https://');
+            this.requestAdminUrlTemplate = this.requestAdminUrlTemplate.replace('http://','https://');
+            this.requestUrlTemplate = this.requestUrlTemplate.replace('http://','https://');
+        }
+        if (Aitoc_Aitholiday.config.palette)
+        {
+            var request = new Aitoc_Aitholiday.Admin.Request();
+            request.send([],null,{
+                parameters: {store_id: this.storeViewId}
+            });
+        }
+        else if (Aitoc_Aitholiday.config.decoration)
+        {
+            this.initPublic();
+        }
+    } ,
+    
+    initPublic: function()
+    {
+        var manager = new Aitoc_Aitholiday.Decoration.Manager();
+        manager.showDecoration();
+        var request = new Aitoc_Aitholiday.User.Request(manager);
+        request.send();
     }
     
 };

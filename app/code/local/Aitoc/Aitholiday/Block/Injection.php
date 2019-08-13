@@ -6,6 +6,15 @@
 class Aitoc_Aitholiday_Block_Injection extends Mage_Core_Block_Template
 {
     
+    protected function _construct()
+    {
+        if ($bridge = Mage::app()->getRequest()->getParam('bridge'))
+        {
+            $this->_helper()->session()->setAitholidayBridgeCode($bridge);
+            $this->_adminHelper()->initBridge();
+        }
+    }
+    
     /**
      * 
      * @return Aitoc_Aitholiday_Helper_Admin
@@ -32,7 +41,7 @@ class Aitoc_Aitholiday_Block_Injection extends Mage_Core_Block_Template
     public function getConfigJSON()
     {
         $config = array(
-            'palette' => Mage::getStoreConfigFlag('aitholiday/manage/enable_palette') ,
+            'palette' => $this->_helper()->session()->getAitholidayBridgeCode() ? true : false ,
             'decoration' => Mage::getStoreConfigFlag('aitholiday/manage/enable_set')
         );
         return Zend_Json::encode($config);
@@ -41,12 +50,25 @@ class Aitoc_Aitholiday_Block_Injection extends Mage_Core_Block_Template
     public function getLocationJSON()
     {
         $request = Mage::app()->getRequest();
+        $params = $request->getParams();
+        if (isset($params['bridge']))
+        {
+            unset($params['bridge']);
+        }
+        if (isset($params['___store']))
+        {
+            unset($params['___store']);
+        }
+        if (isset($params['___from_store']))
+        {
+            unset($params['___from_store']);
+        }
         $data = array(
-            'title' => $this->getLayout()->getBlock('head')->getTitle() ,
+            'title' => addcslashes($this->getLayout()->getBlock('head')->getTitle(),"'") ,
             'module' => $request->getModuleName() ,
             'controller' => $request->getControllerName() ,
             'action' => $request->getActionName() ,
-            'params' => $request->getParams()
+            'params' => $params
         );
         return Zend_Json::encode($data);
     }

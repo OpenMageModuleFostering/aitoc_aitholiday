@@ -37,7 +37,8 @@ abstract class Aitoc_Aitholiday_Model_Notification_Abstract extends Mage_Core_Mo
                 
                 $aData = array(
                     'host'    => Mage::getBaseUrl(),
-                    'version' => Mage::getVersion()
+                    'version' => Mage::getVersion(),
+                    'key' => 'Aitoc_Aitholiday'
                 );
                 $this->setData($service->{$this->_serviceMethod}($aData));
                 $service->disconnect();

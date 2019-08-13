@@ -95,4 +95,16 @@ $this->run(
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
 );
 
+$createBridge = "CREATE TABLE IF NOT EXISTS {$this->getTable('aitholiday_bridge')} (
+      `code_id` INT(10) UNSIGNED NOT NULL auto_increment,
+      `code` VARCHAR(32) NOT NULL ,
+      `content` MEDIUMTEXT NOT NULL ,
+      `date` DATETIME NOT NULL ,
+      PRIMARY KEY ( `code_id` ) ,
+      KEY `code` ( `code` ) ,
+      KEY `date` ( `date` )
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+
+$this->run($createBridge);
+
 $this->endSetup();

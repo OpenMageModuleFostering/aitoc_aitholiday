@@ -7,9 +7,39 @@ class Aitoc_Aitholiday_ManageController extends Mage_Adminhtml_Controller_Action
 {
     
     protected $_forEnable = array(
-        'aitholiday/manage/enable_palette' => 'enable_palette' ,
         'aitholiday/manage/enable_set' => 'enable_set'
     );
+    
+    /**
+     * 
+     * @var Aitoc_Aitholiday_Model_Bridge
+     */
+    protected $_bridge;
+    
+    /**
+     * Controller predispatch method
+     *
+     * @return Mage_Adminhtml_Controller_Action
+     */
+    public function preDispatch()
+    {
+        parent::preDispatch();
+        if ($this->_isAllowed())
+        {
+            $this->_bridge = Mage::getModel('aitholiday/bridge');
+            if ($code = $this->_getSession()->getData('aitholiday_bridge_code'))
+            {
+                $this->_bridge->load($code,'code');
+            }
+            if (!$this->_bridge->getId())
+            {
+                $this->_bridge->save();
+            }
+            $this->_getSession()->setData('aitholiday_bridge_code',$this->_bridge->getCode());
+            Mage::register('aitholiday_bridge',$this->_bridge);
+        }
+        return $this;
+    }
     
     public function indexAction()
     {
