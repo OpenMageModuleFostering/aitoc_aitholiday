@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Aitoc_Aitholiday",
+    "name": "OpenMageModuleFostering\/Aitoc_Aitholiday",
     "type": "magento-module",
     "license": "OSL",
     "homepage": "",
     "description": "Decorate your store with fine Christmas ornaments without having to change your theme.",
     "authors": [
-    {
-        "name": "AITOC Inc.",
-        "email": "magsupport@aitoc.com"
-    }
-],
+        {
+            "name": "AITOC Inc.",
+            "email": "magsupport@aitoc.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
